@@ -20,14 +20,14 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">
-                <i class="icon-archive menu-icon"></i>
-                <span class="menu-title">Liste des ressources</span>
+                <i class="icon-tag menu-icon"></i>
+                <span class="menu-title">Gestion des catégories</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="icon-tag menu-icon"></i>
-                <span class="menu-title">Gestion des catégories</span>
+            <a class="nav-link" href="res_list.php">
+                <i class="icon-archive menu-icon"></i>
+                <span class="menu-title">Liste des ressources</span>
             </a>
         </li>
     </ul>

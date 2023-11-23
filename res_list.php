@@ -33,9 +33,7 @@
             <div class="content-wrapper">
                 <div class="card">
                     <div class="card-body">
-                        <a class="btn btn-outline-primary" href="add_resource.php">+ Ajouter un ressource</a>
-                        <br>
-                        <br>
+                        <h4 class="card-title">Liste des ressources</h4>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -43,7 +41,6 @@
                                     <th>Titre</th>
                                     <th>Description</th>
                                     <th>Sous-catégorie</th>
-                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -74,8 +71,6 @@
                                         echo "<td>" . $row["nom_ressource"] . "</td>";
                                         echo "<td>" . $row["description"] . "</td>";
                                         echo "<td>" . $nom_souscategorie . "</td>";
-                                        echo "<td><a href='update_resource.php?id=" . $row["id"] . "'><i class='icon-md text-info mdi mdi-pencil-box'></i></a>
-                                    <i class='icon-md text-danger mdi mdi-delete' data-toggle='modal' data-target='#deleteResource' data-resource-id='" . $row["id"] . "'></i></td>";
                                         echo "</tr>";
                                     }
                                 } else {
@@ -94,28 +89,6 @@
                 <?php include('partials/_footer.php'); ?>
                 <!-- partial -->
             </div>
-            <div class="modal fade" id="deleteResource" tabindex="-1" role="dialog" aria-labelledby="deleteResourceLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteResourceLabel">Supprimer</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <h3>Êtes-vous sûr de vouloir supprimer ce ressource ?</h3>
-                        </div>
-                        <div class="modal-footer">
-                            <form method="POST" action="delete_resource.php">
-                                <input type="hidden" name="resource_id" id="deleteResourceId" value="">
-                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fermer</button>
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
@@ -130,17 +103,8 @@
     <script src="js/off-canvas.js"></script>
     <script src="js/hoverable-collapse.js"></script>
     <script src="js/template.js"></script>
-    <script>
-        $('#deleteResource').on('show.bs.modal', function (event) {
-            let button = $(event.relatedTarget);
-            let resourceId = button.data('resource-id');
-            let modal = $(this);
-            modal.find('#deleteResourceId').val(resourceId);
-        });
-    </script>
     <!-- endinject -->
     <!-- Custom js for this page-->
     <!-- End custom js for this page-->
 </body>
-
 </html>

@@ -62,7 +62,6 @@
                   $sql_users = "SELECT * FROM utilisateurs";
                   $result = $connection->query($sql_users);
 
-                  // Check if there are any results
                   if ($result->num_rows > 0) {
                       while ($row = $result->fetch_assoc()) {
                           $squad_id = $row["squad_id"];
