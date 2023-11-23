@@ -70,7 +70,7 @@
                                         echo "<tr>";
                                         echo "<td>" . $row["nom_ressource"] . "</td>";
                                         echo "<td>" . $row["description"] . "</td>";
-                                        echo "<td>" . $nom_souscategorie . "</td>";
+                                        echo "<td><label class='badge badge-success'>" . $nom_souscategorie . "</label></td>";
                                         echo "</tr>";
                                     }
                                 } else {

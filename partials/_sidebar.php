@@ -19,7 +19,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="categories.php">
                 <i class="icon-tag menu-icon"></i>
                 <span class="menu-title">Gestion des catégories</span>
             </a>

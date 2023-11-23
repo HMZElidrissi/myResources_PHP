@@ -73,7 +73,7 @@
                                         echo "<tr>";
                                         echo "<td>" . $row["nom_ressource"] . "</td>";
                                         echo "<td>" . $row["description"] . "</td>";
-                                        echo "<td>" . $nom_souscategorie . "</td>";
+                                        echo "<td><label class='badge badge-success'>" . $nom_souscategorie . "</label></td>";
                                         echo "<td><a href='update_resource.php?id=" . $row["id"] . "'><i class='icon-md text-info mdi mdi-pencil-box'></i></a>
                                     <i class='icon-md text-danger mdi mdi-delete' data-toggle='modal' data-target='#deleteResource' data-resource-id='" . $row["id"] . "'></i></td>";
                                         echo "</tr>";
