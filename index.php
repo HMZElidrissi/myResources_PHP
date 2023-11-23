@@ -37,7 +37,10 @@
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Welcome Hamza!!</h3>
+                  <h3 class="font-weight-bold">Bienvenue sur Class Aziz Resources Hub,</h3>
+                    <h6>Un espace collaboratif pour les étudiants de Youcode pour partager et accéder à des ressources précieuses,
+                        <br>y compris des liens, des livres et d'autres supports qui enrichissent l'expérience d'apprentissage.
+                    </h6>
                 </div>
               </div>
             </div>

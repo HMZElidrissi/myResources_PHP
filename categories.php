@@ -23,11 +23,11 @@
 <body>
 <div class="container-scroller">
     <!-- partial:../../partials/_navbar.php -->
-    <?php include('partials/_navbar.php'); ?>
+    <?php include('./partials/_navbar.php'); ?>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.php -->
-        <?php include('partials/_sidebar.php'); ?>
+        <?php include('./partials/_sidebar.php'); ?>
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
