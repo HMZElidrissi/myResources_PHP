@@ -3,16 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["resource_id"])) {
         $resource_id = $_POST["resource_id"];
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "MyResources";
-
-        $connection = new mysqli($servername, $username, $password, $dbname);
-
-        if ($connection->connect_error) {
-            die("La connexion a échoué :" . $connection->connect_error);
-        }
+        include('connection.php');
 
         $sql_delete = "DELETE FROM ressources WHERE id = $resource_id";
         if ($connection->query($sql_delete) === TRUE) {

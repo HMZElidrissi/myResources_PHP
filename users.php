@@ -48,16 +48,7 @@
                   </thead>
                   <tbody>
                   <?php
-                  $servername = "localhost";
-                  $username = "root";
-                  $password = "";
-                  $dbname = "MyResources";
-
-                  $connection = new mysqli($servername, $username, $password, $dbname);
-
-                  if ($connection->connect_error) {
-                      die("La connexion a échoué :" . $connection->connect_error);
-                  }
+                  include('connection.php');
 
                   $sql_users = "SELECT * FROM utilisateurs";
                   $result = $connection->query($sql_users);

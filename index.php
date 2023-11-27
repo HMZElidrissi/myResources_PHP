@@ -1,14 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "MyResources";
 
-$connection = new mysqli($servername, $username, $password, $dbname);
-
-if ($connection->connect_error) {
-    die("La connexion a échoué :" . $connection->connect_error);
-}
+include('connection.php');
 
 $sql_users = "SELECT COUNT(*) FROM utilisateurs";
 $sql_ressources = "SELECT COUNT(*) FROM ressources";
@@ -111,16 +103,7 @@ $connection->close();
                   <p class="card-title">Nombre de sous-catégories par catégorie</p>
                   <div class="charts-data">
                       <?php
-                      $servername = "localhost";
-                      $username = "root";
-                      $password = "";
-                      $dbname = "MyResources";
-
-                      $connection = new mysqli($servername, $username, $password, $dbname);
-
-                      if ($connection->connect_error) {
-                          die("La connexion a échoué :" . $connection->connect_error);
-                      }
+                      include('connection.php');
 
                       $sql_categories = "SELECT * FROM categories";
                       $result_categories = $connection->query($sql_categories);
