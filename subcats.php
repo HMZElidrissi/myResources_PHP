@@ -31,9 +31,9 @@
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
-                <div class="card col-md-4 mx-auto">
+                <div class="card col-md-6 mx-auto">
                     <div class="card-body">
-                        <a class="btn btn-outline-primary" href="add_category.php">+ Ajouter une catégorie</a>
+                        <a class="btn btn-outline-primary" href="add_subcategory.php">+ Ajouter une sous-catégorie</a>
                         <br>
                         <br>
                         <div class="table-responsive">
@@ -41,6 +41,7 @@
                                 <thead>
                                 <tr>
                                     <th>Titre:</th>
+                                    <th>Catégorie:</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -48,19 +49,26 @@
                                 <?php
                                 include('connection.php');
 
-                                $sql = "SELECT * FROM categories";
+                                $sql = "SELECT * FROM souscategories";
                                 $result = $connection->query($sql);
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
+                                        $categorie_id = $row["categorie_id"];
+                                        $sql_categorie = "SELECT nom_categorie FROM categories WHERE id = $categorie_id";
+                                        $result_categorie = $connection->query($sql_categorie);
+                                        $categorie_row = $result_categorie->fetch_assoc();
+                                        $nom_categorie = $categorie_row["nom_categorie"];
+
                                         echo "<tr>";
-                                        echo "<td><label class='badge badge-warning'>" . $row["nom_categorie"] . "</label></td>";
-                                        echo "<td><a href='update_category.php?id=" . $row["id"] . "'><i class='icon-md text-info mdi mdi-pencil-box'></i></a>
-                                    <i class='icon-md text-danger mdi mdi-delete' data-toggle='modal' data-target='#deleteCategory' data-category-id='" . $row["id"] . "'></i></td>";
+                                        echo "<td><label class='badge badge-info'>" . $row["nom_souscategorie"] . "</label></td>";
+                                        echo "<td><label class='badge badge-outline-success'>" . $nom_categorie . "</label></td>";
+                                        echo "<td><a href='update_subcategory.php?id=" . $row["id"] . "'><i class='icon-md text-info mdi mdi-pencil-box'></i></a>
+                                    <i class='icon-md text-danger mdi mdi-delete' data-toggle='modal' data-target='#deleteSubCategory' data-subcategory-id='" . $row["id"] . "'></i></td>";
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "<tr><td colspan='4'>Aucune catégorie trouvée</td></tr>";
+                                    echo "<tr><td colspan='4'>Aucune sous-catégorie trouvée</td></tr>";
                                 }
 
                                 $connection->close();
@@ -75,21 +83,21 @@
                 <?php include('partials/_footer.php'); ?>
                 <!-- partial -->
             </div>
-            <div class="modal fade" id="deleteCategory" tabindex="-1" role="dialog" aria-labelledby="deleteCategoryLabel" aria-hidden="true">
+            <div class="modal fade" id="deleteSubCategory" tabindex="-1" role="dialog" aria-labelledby="deleteSubCategoryLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="deleteCategoryLabel">Supprimer</h5>
+                            <h5 class="modal-title" id="deleteSubCategoryLabel">Supprimer</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h3>Êtes-vous sûr de vouloir supprimer cette catégorie ?</h3>
+                            <h3>Êtes-vous sûr de vouloir supprimer cette sous-catégorie ?</h3>
                         </div>
                         <div class="modal-footer">
-                            <form method="POST" action="delete_category.php">
-                                <input type="hidden" name="category_id" id="deleteCategoryId" value="">
+                            <form method="POST" action="delete_subcategory.php">
+                                <input type="hidden" name="user_id" id="deleteSubCategoryId" value="">
                                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fermer</button>
                                 <button type="submit" class="btn btn-danger">Supprimer</button>
                             </form>
@@ -112,11 +120,11 @@
     <script src="js/hoverable-collapse.js"></script>
     <script src="js/template.js"></script>
     <script>
-        $('#deleteCategory').on('show.bs.modal', function (event) {
+        $('#deleteSubCategory').on('show.bs.modal', function (event) {
             let button = $(event.relatedTarget);
-            let categoryId = button.data('category-id');
+            let subcategoryId = button.data('subcategory-id');
             let modal = $(this);
-            modal.find('#deleteCategoryId').val(categoryId);
+            modal.find('#deleteSubCategoryId').val(subcategoryId);
         });
     </script>
     <!-- endinject -->
