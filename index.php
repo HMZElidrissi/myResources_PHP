@@ -108,7 +108,7 @@ $connection->close();
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title">Nombre de sous-catégories par catégories</p>
+                  <p class="card-title">Nombre de sous-catégories par catégorie</p>
                   <div class="charts-data">
                       <?php
                       $servername = "localhost";
@@ -130,19 +130,16 @@ $connection->close();
                               $nom_category = $category_row["nom_categorie"];
                               $categorie_id = $category_row["id"];
 
-                              // Calculate the number of subcategories per category
                               $sql_nbr_souscategorie = "SELECT COUNT(*) as nbr_souscategorie FROM souscategories WHERE categorie_id = $categorie_id";
                               $result_nbr_souscategorie = $connection->query($sql_nbr_souscategorie);
                               $nbr_souscategorie_row = $result_nbr_souscategorie->fetch_assoc();
                               $nbr_souscategorie_per_category = $nbr_souscategorie_row["nbr_souscategorie"];
 
-                              // Calculate the total number of subcategories
                               $sql_nbr_total_souscategorie = "SELECT COUNT(*) as nbr_total_souscategorie FROM souscategories";
                               $result_nbr_total_souscategorie = $connection->query($sql_nbr_total_souscategorie);
                               $nbr_total_sous_category_row = $result_nbr_total_souscategorie->fetch_assoc();
                               $nbr_total_sous_category = $nbr_total_sous_category_row["nbr_total_souscategorie"];
 
-                              // Calculate the percentage completion
                               $percentage_completion = ($nbr_souscategorie_per_category / $nbr_total_sous_category) * 100;
 
                               echo '<div class="mt-3">';
