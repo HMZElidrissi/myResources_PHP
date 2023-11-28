@@ -2,21 +2,30 @@
 include('connection.php');
 
 $id = $_GET['id'];
-$data = "SELECT * FROM categories WHERE id = $id" ;
+$data = "SELECT * FROM souscategories WHERE id = $id" ;
 $result = $connection->query($data);
 
+$categoriesQuery = "SELECT * FROM categories";
+$categoriesResult = $connection->query($categoriesQuery);
+
+if ($categoriesResult) {
+    $categories = $categoriesResult->fetch_all(MYSQLI_ASSOC);
+} else {
+    echo "Erreur lors de la récupération des catégories : " . $connection->error;
+}
 
 if ($result) {
-    $categoryData = $result->fetch_assoc();
+    $subcategoryData = $result->fetch_assoc();
 } else {
-    echo "Erreur lors de la récupération des données catégories : " . $connection->error;
+    echo "Erreur lors de la récupération des données sous-catégories : " . $connection->error;
 }
 
 if(isset($_POST['edit']))  {
 
-    $title = $_POST['editCategoryTitle'];
+    $title = $_POST['editSubCategoryTitle'];
+    $category = $_POST['editSubCat'];
 
-    $sql = "UPDATE categories SET nom_categorie = '$title' WHERE id = '$id'";
+    $sql = "UPDATE souscategories SET nom_souscategorie = '$title', categorie_id = '$category' WHERE id = '$id'";
 
     if ($connection->query($sql) === TRUE) {
         echo "Enregistrement mis à jour avec succès";
@@ -24,7 +33,7 @@ if(isset($_POST['edit']))  {
         echo "Erreur lors de la mise à jour de l'enregistrement : " . $connection->error;
     }
 
-    header("Location: categories.php");
+    header("Location: subcats.php");
 
 }
 
@@ -67,9 +76,19 @@ $connection->close();
                         <h4 class="card-title">MODIFIER</h4>
                         <form class="forms-sample" method="POST" action="">
                             <div class="form-group row">
-                                <label for="editCategoryTitle" class="col-sm-3 col-form-label">Titre:</label>
+                                <label for="editSubCategoryTitle" class="col-sm-3 col-form-label">Titre:</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="editCategoryTitle" name="editCategoryTitle" value="<?php echo $categoryData['nom_categorie']; ?>">
+                                    <input type="text" class="form-control" id="editSubCategoryTitle" name="editSubCategoryTitle" value="<?php echo $subcategoryData['nom_souscategorie']; ?>">
+                                </div>
+                                <label for="editSubCat" class="col-sm-3 col-form-label">Squad:</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="editSubCat" name="editSubCat">
+                                        <?php foreach ($categories as $category): ?>
+                                            <option value="<?php echo $category['id']; ?>" <?php echo ($category['id'] == $subcategoryData['categorie_id']) ? 'selected' : ''; ?>>
+                                                <?php echo $category['nom_categorie']; ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div>
                             <button name="edit" type="submit" class="btn btn-primary mr-2">Enregistrer</button>

@@ -61,7 +61,7 @@
                                         $nom_categorie = $categorie_row["nom_categorie"];
 
                                         echo "<tr>";
-                                        echo "<td><label class='badge badge-info'>" . $row["nom_souscategorie"] . "</label></td>";
+                                        echo "<td><label class='badge badge-outline-info'>" . $row["nom_souscategorie"] . "</label></td>";
                                         echo "<td><label class='badge badge-outline-success'>" . $nom_categorie . "</label></td>";
                                         echo "<td><a href='update_subcategory.php?id=" . $row["id"] . "'><i class='icon-md text-info mdi mdi-pencil-box'></i></a>
                                     <i class='icon-md text-danger mdi mdi-delete' data-toggle='modal' data-target='#deleteSubCategory' data-subcategory-id='" . $row["id"] . "'></i></td>";
@@ -97,7 +97,7 @@
                         </div>
                         <div class="modal-footer">
                             <form method="POST" action="delete_subcategory.php">
-                                <input type="hidden" name="user_id" id="deleteSubCategoryId" value="">
+                                <input type="hidden" name="subcategory_id" id="deleteSubCategoryId" value="">
                                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fermer</button>
                                 <button type="submit" class="btn btn-danger">Supprimer</button>
                             </form>
